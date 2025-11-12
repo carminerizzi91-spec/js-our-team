@@ -37,14 +37,27 @@ const teamMembers = [
   }
 ];
 
-const teamContainer = document.querySelector(".team-container")
-let cardString = "";
+printCardGrid();
 
-for (let i = 0; i < teamMembers.length; i++) {
-  const { name, role, img } = teamMembers[i];
+function printCardGrid() {
+
+  const teamContainer = document.querySelector(".team-container")
+  let cardString = "";
+
+  for (let i = 0; i < teamMembers.length; i++) {
+    const curMemebers = teamMembers[i];
+    const card = createSingleCard(curMemebers);
+    cardString += card;
+  }
+  teamContainer.innerHTML = cardString;
+}
+
+
+
+function createSingleCard(member) { 
+  const { name, role, img } = member;
   const card = `
-  <div class="team-container">
-    <div>
+    <div class = "team-card">
       <div class="card-img">
         <img src="${img}" alt="${name}">
       </div>
@@ -53,11 +66,6 @@ for (let i = 0; i < teamMembers.length; i++) {
           <p>${role}</p>
       </div>
 
-                </div>
-
-            </div>`;
-
-  cardString += card;
+    </div>`;
+  return card;
 }
-
-teamContainer.innerHTML = cardString;
