@@ -36,3 +36,28 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+const teamContainer = document.querySelector(".team-container")
+let cardString = "";
+
+for (let i = 0; i < teamMembers.length; i++) {
+  const { name, role, img } = teamMembers[i];
+  const card = `
+  <div class="team-container">
+    <div>
+      <div class="card-img">
+        <img src="${img}" alt="${name}">
+      </div>
+        <div class="card-text">
+          <h3>${name}</h3>
+          <p>${role}</p>
+      </div>
+
+                </div>
+
+            </div>`;
+
+  cardString += card;
+}
+
+teamContainer.innerHTML = cardString;
