@@ -37,7 +37,25 @@ const teamMembers = [
   }
 ];
 
-printCardGrid();
+
+
+const nameInput = document.querySelector("#name");
+const roleInput = document.querySelector("#role");
+const emailInput = document.querySelector("#email");
+const imgInput = document.querySelector("#img");
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function(event){
+  event.preventDefault();
+  const newMember = {
+  name: nameInput.value,
+  role: roleInput.value,
+  email: emailInput.value,
+  img: imgInput.value,
+
+  };
+  teamMembers.push(newMember)
+});
 
 function printCardGrid() {
 
@@ -52,20 +70,25 @@ function printCardGrid() {
   teamContainer.innerHTML = cardString;
 }
 
-
-
 function createSingleCard(member) { 
-  const { name, role, img } = member;
+  const { name, role, email ,img } = member;
   const card = `
-    <div class = "team-card">
-      <div class="card-img">
-        <img src="${img}" alt="${name}">
-      </div>
+<div class="col text-center h-100">
+    <div class="shadow p-2 h-100 team-card-inner">
+        
+        <div class="card-img-container"> 
+            <img src="${img}" alt="${name}" class="img-fluid team-img-fit"> 
+        </div>
+        
         <div class="card-text">
-          <h3>${name}</h3>
-          <p>${role}</p>
-      </div>
+            <h3 class="h6 mt-2 mb-0">${name}</h3>
+            <p class="small text-muted">${role}</p>
+            <p class="small text-muted">${email}</p>
 
-    </div>`;
+        </div>
+    </div>
+</div>`;
   return card;
 }
+
+printCardGrid();
